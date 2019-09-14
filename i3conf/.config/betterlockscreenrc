@@ -1,0 +1,35 @@
+# configuration file for betterlockscreen
+
+# insidevercolor -- Inside of the circle while the password is being verified
+# insidewrongcolor -- Inside of the circle when a wrong password was entered
+# insidecolor -- Inside of the circle while typing/idle
+# ringvercolor -- Outer ring while the password is being
+# ringwrongcolor -- Outer ring when a wrong password was entered
+# ringcolor -- Outer ring while typing/idle
+# linecolor -- Line separating outer ring from inside of the circle and delimiting the highlight segments
+# textcolor -- Text ("verifying", "wrong!")
+# keyhlcolor -- Keypress highlight segments
+# bshlcolor -- Backspace highlight segments
+
+insidecolor=2ecc71ff
+insidevercolor=f1c40fff
+insidewrongcolor=e74c3cff
+
+ringcolor=ffffffff
+ringvercolor=f1c40fff
+ringwrongcolor=e74c3cff
+
+keyhlcolor=2ecc71ff
+bshlcolor=d23c3dff
+
+separatorcolor=ababcdff
+verifcolor=ffffffff
+
+timecolor=ffffffff
+datecolor=ffffffff
+loginbox=ffffffff
+
+font="Hack Nerd Font"
+locktext='Type password to unlock...'
+lock_timeout=5
+timestr="%I:%M %p"
