@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/diegomc9/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 ZSH_CUSTOM=~/zsh_custom
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -81,9 +81,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias zshconfig="nano ~/.zshrc"
+
 # alias ohmyzsh="mate ~/.oh-my-zsh
 alias gitssh="ssh -T git@github.com"
 alias fsociety="cd ~/Tools/fsociety && python2 fsociety.py"
