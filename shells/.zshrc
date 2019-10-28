@@ -83,6 +83,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # For a full list of active aliases, run `alias`.
 
 # alias ohmyzsh="mate ~/.oh-my-zsh
+alias zshconf="nano ~/.zshrc"
 alias gitssh="ssh -T git@github.com"
 alias fsociety="cd ~/Tools/fsociety && python2 fsociety.py"
 alias updatefsociety="cd ~/Tools/fsociety && git pull https://github.com/Manisso/fsociety.git"
@@ -95,7 +96,9 @@ alias lpaci="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 22"
 alias lpacu="cat /var/log/pacman.log | grep "\[ALPM\] upgraded" | tail -n 20"
 alias untar="tar -zxvf"
 alias see="evince"
-alias ls="ls_extended"
+alias ls="lsd"
+alias fimode="export JAVA_HOME=/usr/lib/jvm/java-8-openjdk"
+alias nofi="export JAVA_HOME=/usr/lib/jvm/java-10-openjdk"
 neofetch --source ~/.config/neofetch/ascii_prompt
 
 # @begin(34982931)@ - Do not edit these lines - added automatically!
