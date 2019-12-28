@@ -51,6 +51,7 @@ COMPLETION_WAITING_DOTS="true"
 
 plugins=(
   git
+  tmux
   docker
   archlinux
 )
@@ -101,10 +102,3 @@ alias fimode="export JAVA_HOME=/usr/lib/jvm/java-8-openjdk"
 alias nofi="export JAVA_HOME=/usr/lib/jvm/java-10-openjdk"
 neofetch --source ~/.config/neofetch/ascii_prompt
 
-# @begin(34982931)@ - Do not edit these lines - added automatically!
-# You should customize CIAOPATH before this chunk if you place bundles in
-# places other than ~/.ciao
-if [ -x ~/.ciaoroot/master/build/bin/ciao-env ] ; then
-  eval "$(~/.ciaoroot/master/build/bin/ciao-env --sh)"
-fi
-# @end(34982931)@ - End of automatically added lines.
