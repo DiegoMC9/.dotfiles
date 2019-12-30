@@ -33,7 +33,7 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # bindsym XF86PowerOff mode "$mode_system"
-bindsym $mod+Shift+l exec "~/.config/polybar/scripts/powermenu", mode "default"
+bindsym $mod+Shift+l exec "~/.config/rofi/bins/powermenu", mode "default"
 bindsym XF86PowerOff exec "~/.config/polybar/scripts/powermenu", mode "default"
 
 # change focus

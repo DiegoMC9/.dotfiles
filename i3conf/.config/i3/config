@@ -255,7 +255,7 @@ bindsym $mod+e exec xinput --enable 11
 # To do screen captures use scrot
 bindsym Print exec ~/.config/rofi/bins/scrotmenu # scrot ~/Pictures/Captures/%b%d::%H%M%S.png
 # for_window [class="Thunar"] floating enable
-for_window [class="[.]*"] floating enable
+# for_window [class="[.]*"] floating enable
 exec --no-startup-id conky --daemonize --pause=1
 #~/.conky/conky-startup.sh
 exec --no-startup-id xss-lock mantablockscreen -cc
