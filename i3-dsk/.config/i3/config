@@ -248,9 +248,9 @@ exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-#exec --no-startup-id xautolock -time 10 -locker blurlock
-#exec_always --no-startup-id ff-theme-util
-#exec_always --no-startup-id fix_xcursor
+# exec --no-startup-id xautolock -time 10 -locker blurlock
+# exec_always --no-startup-id ff-theme-util
+# exec_always --no-startup-id fix_xcursor
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
@@ -290,6 +290,6 @@ bindsym $mod+y     border toggle
 bindsym Print exec ~/.config/rofi/bins/scrotmenu # scrot ~/Pictures/Captures/%b%d::%H%M%S.png
 for_window [class="Pcmanfm"] floating enable
 # for_window [class="[.]*"] floating enable
-exec --no-startup-id conky --daemonize 
+exec --no-startup-id conky --daemonize -c "~/.config/conky.conf"
 #~/.conky/conky-startup.sh
 #exec --no-startup-id /usr/lib/polkit-1/polkitd &
