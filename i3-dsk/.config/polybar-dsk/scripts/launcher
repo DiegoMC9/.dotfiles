@@ -1,0 +1,5 @@
+#!/bin/bash
+
+## Created By Aditya Shakya
+
+rofi -modi run,drun -show drun -yoffset 23 -xoffset 0 -line-padding 4 -columns 1 -lines 10 -padding 5 -hide-scrollbar -show-icons -drun-icon-theme "Papirus" -font "Hack Nerd Font 10" -theme ~/.config/rofi/themes/my_themes/sidetab.rasi
