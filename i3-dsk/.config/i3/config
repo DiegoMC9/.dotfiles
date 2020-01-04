@@ -287,5 +287,5 @@ bindsym $mod+y     border toggle
 bindsym Print exec ~/.config/rofi/bins/scrotmenu # scrot ~/Pictures/Captures/%b%d::%H%M%S.png
 for_window [class="Pcmanfm"] floating enable
 # for_window [class="[.]*"] floating enable
-exec --no-startup-id conky --daemonize -c "~/.config/conky.conf"
+exec --no-startup-id conky -d -c ~/.config/conky.conf
 #~/.conky/conky-startup.sh
