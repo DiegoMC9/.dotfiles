@@ -113,8 +113,6 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
-# assign [class="Pale moon"] $ws2
 assign [class="Telegram"] 10
 #assign [class="Spotify"] 10
 
@@ -126,7 +124,6 @@ bindsym $mod+Shift+r restart
 
 bindsym $mod+l exec blurlock
 #betterlockscreen -cc
-bindsym $mod+ctrl+l exec systemctl suspend
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -292,4 +289,3 @@ for_window [class="Pcmanfm"] floating enable
 # for_window [class="[.]*"] floating enable
 exec --no-startup-id conky --daemonize -c "~/.config/conky.conf"
 #~/.conky/conky-startup.sh
-#exec --no-startup-id /usr/lib/polkit-1/polkitd &

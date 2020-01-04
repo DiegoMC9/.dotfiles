@@ -22,5 +22,3 @@ if [ -x /home/diegomc9/.ciaoroot/master/build/bin/ciao-env ] ; then
   eval "$(/home/diegomc9/.ciaoroot/master/build/bin/ciao-env --sh)"
 fi
 # @end(34982931)@ - End of automatically added lines.
-TRAZA_BSVC = 1
-export TRAZA_BSVC
