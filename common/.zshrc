@@ -88,7 +88,7 @@ alias zshconf="nano ~/.zshrc"
 alias gitssh="ssh -T git@github.com"
 alias fsociety="cd ~/Tools/fsociety && python2 fsociety.py"
 alias updatefsociety="cd ~/Tools/fsociety && git pull https://github.com/Manisso/fsociety.git"
-alias fivpn="sudo openvpn --config ~/Documents/UPM/vpn/373_vpn_etsiinf.ovpn"
+alias fivpn="sudo openvpn --config ~/Documentos/UPM/vpn/373_vpn_etsiinf.ovpn"
 alias triqui="ssh z170102@triqui1.fi.upm.es"
 
 alias freemem="sudo pacman -Rns $(pacman -Qtdq);sudo rm -r ~/.local/share/Trash/files/* ~/.local/share/Trash/info/*; paccache -rk 1"
