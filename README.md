@@ -3,6 +3,7 @@
 ## i3wm config
 ### Instalation
 **STOW**
+## WARNING: BACKUP AND DELETE YOUR CONFIG BEFORE STOWING
 ```
 # common configs for both desktop and pc
 stow common
@@ -18,7 +19,7 @@ stow i3-pc
 - *Dunst*
 - *Rofi*
 - *Conky*
-- *Compton*
+- *Picom*
 - *Termite*
 - *oh-my-zsh*
 - *Neofetch*
