@@ -214,7 +214,7 @@ bindsym $mod+Shift+Tab exec rofi -show combi -show-icons
 
 # Autostart apps
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec_always --no-startup-id compton -bcC
+exec_always --no-startup-id picom -bcC
 exec --no-start-up dunst
 exec --no-startup-id dbus-launch nm-applet
 # exec --no-startup-id "nitrogen --restore"

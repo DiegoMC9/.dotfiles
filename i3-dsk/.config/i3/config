@@ -236,7 +236,7 @@ exec --no-startup-id dunst
 # exec --no-startup-id dbus-launch nm-applet
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1;
-exec --no-startup-id compton -bcC
+exec --no-startup-id picom -bcC
 exec --no-startup-id nm-applet
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
@@ -287,5 +287,5 @@ bindsym $mod+y     border toggle
 bindsym Print exec ~/.config/rofi/bins/scrotmenu # scrot ~/Pictures/Captures/%b%d::%H%M%S.png
 for_window [class="Pcmanfm"] floating enable
 # for_window [class="[.]*"] floating enable
-exec --no-startup-id conky -d -c ~/.config/conky.conf
+exec --no-startup-id conky -d -o -c ~/.config/conky.conf
 #~/.conky/conky-startup.sh
