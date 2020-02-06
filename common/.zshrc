@@ -102,3 +102,11 @@ alias fimode="export JAVA_HOME=/usr/lib/jvm/java-8-openjdk"
 alias nofi="export JAVA_HOME=/usr/lib/jvm/java-10-openjdk"
 neofetch --source ~/.config/neofetch/ascii_prompt
 
+
+# @begin(60990969)@ - Do not edit these lines - added automatically!
+# You should customize CIAOPATH before this chunk if you place bundles in
+# places other than ~/.ciao
+if [ -x /home/diegomc9/.ciaoroot/master/build/bin/ciao-env ] ; then
+  eval "$(/home/diegomc9/.ciaoroot/master/build/bin/ciao-env --sh)"
+fi
+# @end(60990969)@ - End of automatically added lines.
