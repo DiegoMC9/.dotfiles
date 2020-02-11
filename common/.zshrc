@@ -42,7 +42,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd/mm/yyyy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -54,10 +54,9 @@ plugins=(
   tmux
   docker
   archlinux
+  zsh-syntax-highlighting
 )
-
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -84,15 +83,15 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # For a full list of active aliases, run `alias`.
 
 # alias ohmyzsh="mate ~/.oh-my-zsh
-alias zshconf="nano ~/.zshrc"
+#alias zshconf="nano ~/.zshrc"
 alias gitssh="ssh -T git@github.com"
-alias fsociety="cd ~/Tools/fsociety && python2 fsociety.py"
-alias updatefsociety="cd ~/Tools/fsociety && git pull https://github.com/Manisso/fsociety.git"
+#alias fsociety="cd ~/Tools/fsociety && python2 fsociety.py"
+#alias updatefsociety="cd ~/Tools/fsociety && git pull https://github.com/Manisso/fsociety.git"
 alias fivpn="sudo openvpn --config ~/Documentos/UPM/vpn/373_vpn_etsiinf.ovpn"
 alias triqui="ssh z170102@triqui1.fi.upm.es"
 
 alias freemem="sudo pacman -Rns $(pacman -Qtdq);sudo rm -r ~/.local/share/Trash/files/* ~/.local/share/Trash/info/*; paccache -rk 1"
-alias isaac="cd ~/Games/The\ Binding\ of\ Isaac\ Afterbirth\ Plus && wine isaac-ng.exe"
+#alias isaac="cd ~/Games/The\ Binding\ of\ Isaac\ Afterbirth\ Plus && wine isaac-ng.exe"
 alias lpaci="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 22"
 alias lpacu="cat /var/log/pacman.log | grep "\[ALPM\] upgraded" | tail -n 20"
 alias untar="tar -zxvf"
