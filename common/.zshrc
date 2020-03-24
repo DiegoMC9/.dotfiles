@@ -26,7 +26,7 @@ ZSH_THEME="diego"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 #ENABLE_CORRECTION="true"
@@ -83,24 +83,18 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # For a full list of active aliases, run `alias`.
 
 # alias ohmyzsh="mate ~/.oh-my-zsh
-#alias zshconf="nano ~/.zshrc"
 alias gitssh="ssh -T git@github.com"
-#alias fsociety="cd ~/Tools/fsociety && python2 fsociety.py"
-#alias updatefsociety="cd ~/Tools/fsociety && git pull https://github.com/Manisso/fsociety.git"
 alias fivpn="sudo openvpn --config ~/Documentos/UPM/vpn/373_vpn_etsiinf.ovpn"
 alias triqui="ssh z170102@triqui1.fi.upm.es"
 
 alias freemem="sudo pacman -Rns $(pacman -Qtdq);sudo rm -r ~/.local/share/Trash/files/* ~/.local/share/Trash/info/*; paccache -rk 1"
-#alias isaac="cd ~/Games/The\ Binding\ of\ Isaac\ Afterbirth\ Plus && wine isaac-ng.exe"
 alias lpaci="expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 22"
 alias lpacu="cat /var/log/pacman.log | grep "\[ALPM\] upgraded" | tail -n 20"
 alias untar="tar -zxvf"
-alias see="evince"
 alias ls="lsd"
 alias fimode="export JAVA_HOME=/usr/lib/jvm/java-8-openjdk"
 alias nofi="export JAVA_HOME=/usr/lib/jvm/java-10-openjdk"
 neofetch --source ~/.config/neofetch/ascii_prompt
-
 
 # @begin(60990969)@ - Do not edit these lines - added automatically!
 # You should customize CIAOPATH before this chunk if you place bundles in
