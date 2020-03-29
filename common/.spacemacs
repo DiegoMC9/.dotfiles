@@ -37,30 +37,32 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-
-     ;; auto-completion
-     ;; better-defaults
+     auto-completion
+     ;;
+     ;; company-mode
+     colors
+     better-defaults
      emacs-lisp
-     ;; git
-     ;; markdown
-     ;; org
+     git
+     markdown
+     org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     ;; syntax-checking
+     syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(
-                                      material-theme)
+   dotspacemacs-additional-packages '(material-theme)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(org-projectile
+                                    )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -68,7 +70,9 @@ values."
    ;; `used-but-keep-unused' installs only the used packages but won't uninstall
    ;; them if they become unused. `all' installs *all* packages supported by
    ;; Spacemacs and never uninstall them. (default is `used-only')
-   dotspacemacs-install-packages 'used-only))
+   dotspacemacs-install-packages 'used-only)
+  )
+
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -128,13 +132,14 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(material
+                         spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("FiraCode Nerd Font"
                                :size 13
                                :weight normal
                                :width normal
@@ -261,7 +266,16 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   ;; dotspacemacs-line-numbers nil
+   dotspacemacs-lines-numbers '(:relative nil
+                                          :disabled-for-modes dired-mode
+                                          doc-view-mode
+                                          markdown-mode
+                                          org-mode
+                                          pdf-view-mode
+                                          text-mode
+                                          :size-limit-kb 1000)
+   ;; (default nil)
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -302,21 +316,12 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq-default
-   dotspacemacs-themes '(material spacemacs-dark sanityinc-tomorrow-eighties)
-
-   dotspacemacs-lines-numbers '(:relative nil
-                                          :disabled-for-modes dired-mode
-                                          doc-view-mode
-                                          markdown-mode
-                                          org-mode
-                                          pdf-view-mode
-                                          text-mode
-                                          :size-limit-kb 1000)
-   )
+  (set-default-coding-systems 'utf-8)
   )
+
 (defun dotspacemacs/user-config ()
-  (setq powerline-default-separator 'roundstub)
+  (linum-relative-mode)
+  (setq-default powerline-default-separator 'roundstub)
   (use-package windmove
     :ensure t
     :bind (("M-<up>" . windmove-up)
@@ -328,6 +333,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     :ensure t
     :bind (("<f8>" . neotree-toggle))
     :config (setq-default neo-show-hidden-files t)
+    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
     (setq neo-smart-open t))
 
   ;; indent fucking whole buffer (by github.com/skgsergio)
@@ -336,17 +342,25 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (interactive)
     (delete-trailing-whitespace)
     (indent-region (point-min) (point-max) nil)
-    (untabify (point-min) (point-max))
+    (untabify
+     (point-min) (point-max))
     (message "indent buffer: done.")
     )
-  (global-set-key (kbd "C-z") 'undo)
-  (global-set-key "\M-i" 'iwb)
-  (global-set-key (kbd "<f5>") 'bs-show)
-                                        ;@begin(38363236)@ - Do not edit these lines - added automatically!
-  (if (file-exists-p "~/.ciaoroot/master/ciao_emacs/elisp/ciao-site-file.el")
-      (load-file "~/.ciaoroot/master/ciao_emacs/elisp/ciao-site-file.el"))
-                                        ; @end(38363236)@ - End of automatically added lines.
+  ;; Move text
+  (use-package move-text
+    :ensure t
+    :config
+    (global-set-key [(control shift up)]  'move-text-up)
+    (global-set-key [(control shift down)]  'move-text-line-down)
+    )
+  (global-set-key [(control z)] 'undo)
+  (global-set-key [(control shift z)] 'redo)
+  (global-set-key [(meta i)] 'iwb)
+  (global-set-key [(f5)] 'bs-show)
+  (global-set-key [(control x) (control .)] 'comment-or-uncomment-region)
   )
+
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -357,16 +371,20 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
- '(custom-safe-themes
-   (quote
-    ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (material-theme doom-themes ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (flycheck-pos-tip pos-tip flycheck rainbow-mode rainbow-identifiers helm-company helm-c-yasnippet fuzzy company-statistics company color-identifiers-mode auto-yasnippet yasnippet ac-ispell auto-complete unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup htmlize helm-gitignore gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit git-commit with-editor transient material-theme doom-themes ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+;; @begin(38363236)@ - Do not edit these lines - added automatically!
+(if (file-exists-p "~/.ciaoroot/master/ciao_emacs/elisp/ciao-site-file.el")
+    (load-file "~/.ciaoroot/master/ciao_emacs/elisp/ciao-site-file.el"))
+;; @end(38363236)@ - End of automatically added lines.
