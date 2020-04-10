@@ -14,12 +14,13 @@ stow i3-pc
 ```
 --------------------
 ### Dependencies
-- *i3*
-- *Polybar*
-- *Dunst*
-- *Rofi*
-- *Conky*
-- *Picom*
-- *Termite*
-- *oh-my-zsh*
-- *Neofetch*
+- [*i3-gaps*](https://github.com/Airblader/i3)
+- [*Polybar*](https://github.com/polybar/polybar)
+- [*Dunst*](https://github.com/dunst-project/dunst)
+- [*Rofi*](https://github.com/davatorium/rofi)
+- [*Conky*](https://github.com/brndnmtthws/conky)
+- [*Picom*](https://github.com/yshui/picom)
+- [*Termite*](https://github.com/thestinger/termite)
+- [*oh-my-zsh*](https://github.com/ohmyzsh/ohmyzsh)
+- [*Neofetch*](https://github.com/dylanaraps/neofetch)
+- [*Spacemacs*](https://github.com/syl20bnr/spacemacs)

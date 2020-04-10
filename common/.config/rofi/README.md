@@ -1,210 +1,362 @@
-# Rofi menus
+# Rofi Applets & Menus
 
-A variety of convenient menus made mainly using [rofi](https://github.com/davatorium/rofi) and its dmenu emulation.
+<p align="left">
+  <img src="https://img.shields.io/badge/Maintained%3F-Yes-blueviolet?style=flat-square">
+  <img src="https://img.shields.io/github/license/adi1090x/rofi?style=flat-square">
+  <img src="https://img.shields.io/github/stars/adi1090x/rofi?color=red&style=flat-square">
+  <img src="https://img.shields.io/github/forks/adi1090x/rofi?style=flat-square">
+  <img src="https://img.shields.io/github/issues/adi1090x/rofi?style=flat-square">
+</p>
 
-A video showcasing the menus in action is available [here](https://old.reddit.com/r/unixporn/comments/cvqc6s/oc_handy_menus_made_with_rofi/).
+<p align="left">
+<a href="https://www.buymeacoffee.com/adi1090x"><img src="https://raw.githubusercontent.com/adi1090x/files/master/other/bmac.png" alt="Buy Me A Coffee"></a>
+<a href="https://ko-fi.com/adi1090x"><img src="https://raw.githubusercontent.com/adi1090x/files/master/other/kofi.png" alt="Support me on ko-fi"></a>
+</p>
 
-[Here is a showcase](https://gitlab.com/vahnrr/rofi-menus/blob/master/colorschemes.md) of the current colorschemes.
+A collection of custom *applets* and *menus* made using [rofi](https://github.com/davatorium/rofi) and its dmenu emulation, inspired by [rofi-menus](https://gitlab.com/vahnrr/rofi-menus).
 
-## List of menus
+|Menus|Applets|
+|-|-|
+|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/menus/0.gif)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/applets/0.gif)|
 
-### Apps menu
+|Launchers|Sidemenus|
+|-|-|
+|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git.gif)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/android.gif)|
 
-> appsmenu
+<details>
+<summary>Quick Links</summary>
 
-Call rofi in its drun mode to start desktop programmes.
+- [Installation](https://github.com/adi1090x/rofi#installation)
+- [Album](https://www.buymeacoffee.com/adi1090x/posts)
+- [Applets](https://github.com/adi1090x/rofi#applets)
+- [Menus](https://github.com/adi1090x/rofi#menus)
+- [Launchers](https://github.com/adi1090x/rofi#app-launchers)
+- [Sidemenus](https://github.com/adi1090x/rofi#android-style-sidemenus)
+- [Colorschemes](https://github.com/adi1090x/rofi#colorschemes)
+- [Usage](https://github.com/adi1090x/rofi#tips)
+  * [Polybar](https://github.com/adi1090x/rofi#use-with-polybar)
+  * [I3wm](https://github.com/adi1090x/rofi#use-with-i3)
+  * [Openbox](https://github.com/adi1090x/rofi#use-with-openbox)
 
-![appsmenu](screenshots/dark-steel-blue/appsmenu.png)
+</details>
 
-### i3 layout menu
+### Dependencies
 
-> i3layoutmenu
+| Applets/Menus       | Package(s)                                                   | Note   |
+|------------|--------------------------------------------------------------|-----------|
+| Apps       | `termite`, `thunar`, `geany`, `firefox`, `lxmusic`, `xfce4-settings-manager` | Or any other softwares you use most, just change this in *~/.config/rofi/scripts/apps.sh* & also in *menu*.|
+| Backlight  | `xbacklight`, `dunst`  | Adjust brightness & Notify. |
+| Battery  | `acpi` & `xfce4-power-manager-settings` | To get battery info & launch power manager.|
+| MPD        | `mpd` and `mpc`  | `mpc` is a cli based client for `mpd`.|
+| Network    | `dnsutils`, `nmcli`, `nmtui`, `bmon`, `nm-connection-editor` & `termite` | `Termite` is required to open `nmtui` & `bmon`, or any other terminal you use, just change this in *~/.config/rofi/scripts/network.sh* & also in *menu*. |
+| Powermenu      | `systemctl`, `i3lock` | By default `systemctl` is used for most actions, `i3lock` is used for locking, `openbox --exit` is used to log out. you might want to change these commands to match your setup. |
+| Quicklinks | `firefox` (or `chromium`) | By default `firefox` is used to open links, you can use any other browser if you want, change accordingly. |
+| Screenshot | `scrot` `maim` & `viewnior` | `scrot` to take shot & `viewnior` to open it after taking screenshot, you can change to whatever you use. |
+| Time | - | - |
+| Volume | `amixer` | To set the volume. |
 
-Change the current layout of [i3wm](https://github.com/i3/i3).
+### Fonts
 
-![i3layoutmenu](screenshots/dark-steel-blue/i3layoutmenu.png)
++ **Comfortaa** Used for normal text, ([preview](https://www.dafont.com/comfortaa.font) and [source](https://www.deviantart.com/aajohan/art/Comfortaa-font-105395949)).
++ **Hurmit Nerd Font Mono** Used for icons, ([preview](https://app.programmingfonts.org/#hermit) and [source](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hermit)).
++ **Feather** For icons used in android style sidemenus, [Here](https://github.com/adi1090x/rofi/blob/master/fonts/feather.ttf)
++ **Fantasque** For App launchers, [Here](https://github.com/adi1090x/rofi/blob/master/fonts)
++ **Iosevka** For App launchers, [Here](https://github.com/adi1090x/rofi/blob/master/fonts)
 
-### MPD menu
+**Warning:** Do not change the `@icon-font` variable to another font, or you will end up messing with all applets/menus layout.
 
-> mpdmenu
+### Installation
 
-Control the song you play through [mpd (the Music Player Daemon)](https://github.com/MusicPlayerDaemon/).
-
-![mpdmenu](screenshots/dark-steel-blue/mpdmenu.png)
-
-**Functionnalities:**
-- The first 4 options do what you expect them to do
-- *(For repeat and random only)* Green means on and red means off, choosing these will toggle them
-
-### Network menu
-
-> networkmenu
-
-Network manager menu (a themed version of [this original script](https://github.com/firecat53/networkmanager-dmenu)).
-
-![networkmenu](screenshots/dark-steel-blue/networkmenu.png)
-
-### Network Manager VPN menu
-
-> nmvpnmenu
-
-Manage your active vpn connection in a few keystrokes.
-
-![nmvpnmenu_connected](screenshots/dark-steel-blue/nmvpnmenu_connected.png)
-
-![nmvpnmenu_disconnected](screenshots/dark-steel-blue/nmvpnmenu_disconnected.png)
-
-**Functionnalities:**
-- *(Connected)* Choosing the active (green one) option will disconnect from the active vpn
-- *(Connected)* Choosing another option than the active vpn will disconnect from the active vpn and connected to the chosen one
-- *(Disconnected)* Choosing an option will simply connect to this vpn
-
-### Power menu
-
-> powermenu
-
-A classic power menu.
-
-![powermenu](screenshots/dark-steel-blue/powermenu.png)
-
-### Screenshot menu
-
-> scrotmenu
-
-Take screenshots using [scrot](https://github.com/dreamer/scrot).
-
-![scrotmenu](screenshots/dark-steel-blue/scrotmenu.png)
-
-## Use custom colors
-
-These screenshots use the 'Dark steel-blue' from this [set of dotfiles](https://gitlab.com/vahnrr/dots/blob/master/i3-dark-steel-blue), on this repo the colors are located in `themes(<resolution>)/shared/colorschemes/dark-steel-blue.rasi`. You can change the menus theme in `~/.config/rofi/themes/shared/settings.rasi`, by editing the line `@import "<colorscheme>.rasi"`.
-
-A few other themes are located there too ([here is a showcase](https://gitlab.com/vahnrr/rofi-menus/blob/master/colorschemes.md)), do not hesitate to make a pull request if you have made a nice looking colorscheme and wan to share it!
-
----
-
-Want to use a different colorscheme for some specific menu? Add the `@import "<colorscheme>.rasi"` line in the chosen menu theme file right after the line importing the settings.
-
-## Menus dependencies and fixes
-
-First of all make sure you have `rofi` installed:
-```bash
++ First of all make sure you have `rofi` installed:
+``` bash
 # Arch / Arch-based
 pacman -S rofi
+
 # Debian / Ubuntu
 apt-get install rofi
+
 # Fedora
 dnf install rofi
 ```
 
-These menus have been made on my machines (1366x768 and 1920x1080 resolutions) with rofi version **1.5.4-1**, they *might* not work on earlier version although it should be fine.
++ Then, clone this repository
 
-### Fonts
+```
+# 1. Go in rofi's config folder
+cd ~/.config/rofi
 
-The menus uses 3 fonts:
+# 2. Clone this repo
+git clone https://github.com/adi1090x/rofi.git
 
-- **Comfortaa** ([preview](https://www.dafont.com/comfortaa.font) and [source](https://www.deviantart.com/aajohan/art/Comfortaa-font-105395949)) used in appsmenu, mpdmenu, nmvpnmenu for the normal text
-- **Hurmit Nerd Font Mono** ([preview](https://app.programmingfonts.org/#hermit) and [source](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hermit)) used in all the menus for the icons
-- **RobotoMono Nerd Font** ([preview](https://app.programmingfonts.org/#roboto) and [source](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/RobotoMono)) used in networkmenu for the monospace text
+# 3. Make sure the scripts are executables
+cd rofi && chmod +x scripts/*
 
-If you wish to change them dig in the resolution file you are using: `~/.config/rofi/themes/shared/resolutions/<your_resolution>.rasi`.
+# 4. Copy necessary files to the right location
+cp -r bin scripts themes config.rasi ~/.config/rofi
 
-**Warning:** changing the `@icon-font` variable to another font has a high chance of messing most menus' layout.
+# 5. Clean up rofi's config folder
+cd .. && rm -r rofi
 
-### Apps menu
+# 6. Call the scripts (from the scripts folder)
+cd scripts
+./backlight.sh
 
-The icon theme used is [Paper](https://github.com/snwh/paper-icon-theme), you either need to install it or to change the icon theme to use in `~/.config/rofi/config.rasi`.
+# (or from anywhere)
+. ~/.config/rofi/scripts/backlight.sh
+```
 
-### i3 layout menu
+### Applets
 
-This menu is supposed to work with i3 so if you do not use i3 as your window manager you should not be using it.
+![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/applets.gif) <br />
 
-### MPD menu
+- **Apps:** Shortcuts for most used applications.
+- **Backlight:** Display and adjust screen brightness.
+- **Battery:** Display battery percentage & charging-discharging status with dynamic icons.
+- **MPD:** Control the song play through [mpd](https://github.com/MusicPlayerDaemon/).
+- **Network:** Display Online-Offline status with dynamic icons. 
+- **Powermenu:** A classic power menu, with Uptime.
+- **Quicklinks:** Bookmarks shortcuts for most used sites.
+- **Screenshot:** Take screenshots using [scrot](https://github.com/dreamer/scrot).
+- **Time:** Display Time, Day & Date.
+- **Volume:** Display and control volume with dynamic icons for mute status.
 
-To interact with MPD, this menu uses the `mpc` package, make sure you have it installed.
+|Powermenu|Time|Network|Battery|
+|--|--|--|--|
+|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/applets/1.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/applets/2.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/applets/3.gif)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/applets/4.gif)|
 
-### Network menu
+|Volume|Backlight|Screenshot|MPD|
+|--|--|--|--|
+|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/applets/5.gif)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/applets/6.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/applets/7.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/applets/8.png)|
 
-Written in Python, make sure you have it installed, if some functionnalities do not work you might want to get a newer version of this script [here](https://github.com/firecat53/networkmanager-dmenu) or check the issues there to see if someone encountered a similar problem.
+|Quicklinks|Apps|
+|--|--|
+|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/applets/9.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/applets/10.png)|
 
-Also, make sure you have copied the `networkmanager-dmenu` directory and its content (the `config.ini` file) and placed it in `~/.config/`. You might want to change the terminal defined in `~/.config/networkmanager-dmenu/config.ini` since I use `xfce4-terminal` but you might prefer another one.
+### Menus
 
-### Network Manager VPN menu
+![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/menus.gif) <br />
 
-Since the `mapfile` bash command is used, you will need bash with the version **4** or above to run the script of this menu.
+- **Apps:** Shortcuts for most used applications.
+- **Backlight:** Display and adjust screen brightness.
+- **Battery:** Display battery percentage & charging-discharging status with dynamic icons.
+- **MPD:** Control the song play through [mpd](https://github.com/MusicPlayerDaemon/).
+- **Network:** Display SSID, IP, Online-Offline status with dynamic icons. 
+- **Powermenu:** A classic power menu, shows Uptime, CPU & Memory usages.
+- **Quicklinks:** Bookmarks shortcuts for most used sites.
+- **Screenshot:** Take screenshots using [scrot](https://github.com/dreamer/scrot).
+- **Time:** Display Time, Day, Month, Date.
+- **Volume:** Display and control volume with dynamic icons for mute status.
 
-To interact with Network Manager, this script uses `nmcli`, but also `grep` and `sed` to parse data, so make sure those are installed.
+|Powermenu|Time|Network|Battery|
+|--|--|--|--|
+|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/menus/1.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/menus/2.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/menus/3.gif)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/menus/4.gif)|
 
-### Power menu
+|Volume|Backlight|Screenshot|MPD|
+|--|--|--|--|
+|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/menus/5.gif)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/menus/6.gif)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/menus/7.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/menus/8.png)|
 
-It uses `systemctl` to handle most power actions, but also `light-locker` to lock and `i3-msg exit` to log out since I use an i3 session, you might want to tweak this to fit your config.
+|Quicklinks|Apps|
+|--|--|
+|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/menus/9.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/menus/10.png)|
 
-Also when going to sleep this script pauses MPD using an `mpc` command and mutes the volume using `amixer`, so have these on your system or delete these lines in `powermenu.sh`.
+### Android Style Sidemenus
 
-### Screenshot menu
+- **Apps:** Shortcuts for most used applications.
+- **Backlight:** Adjust screen brightness.
+- **MPD:** Control the song play through [mpd](https://github.com/MusicPlayerDaemon/).
+- **Powermenu:** Android like Powermenu.
+- **Quicklinks:** Bookmarks shortcuts for most used sites.
+- **Screenshot:** Take screenshots using [scrot](https://github.com/dreamer/scrot).
+- **Volume:** Control volume with dynamic icons for mute status.
 
-Make sure you have `scrot` installed.
+![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/android.gif) <br />
 
-**Note:** I personally use [i3-script](https://gitlab.manjaro.org/packages/community/i3/i3-scrot) which a verbose wrapper for scrot, sending notifications informing the user of what is happening. The code in `scrotmenu.sh` changes a bit to this:
+### App Launchers
+
+A collection for every app laucher i've used.
+
+***Stuff you need***
++ *Icon pack* : [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
++ *Fonts* : [Fantasque & Iosevka](https://github.com/adi1090x/rofi/blob/master/fonts)
++ *Compton_tryone* : For Blur, [Here](https://github.com/tryone144/compton)
+
+***Styling***
++ Edit the `launcher.sh` file and change the **style** variable to set the style you like.
++ Edit the selected `.rasi` file and *uncomment* the desired color/style. 
+
+> Click on thumbnails to enlarge the image/gif.
+
+|Icons|Icons Rainbow|Icons Fullscreen|Icons Sidebar|Icons Popup|Simple Dark|
+|--|--|--|--|--|--|
+|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers/1.gif)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers/2.gif)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers/3.gif)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers/4.gif)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers/5.gif)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers/6.gif)|
+
+|Grid|Grid Round|Grid Full|Purple|Rainbow Sidebar|Rainbow|
+|--|--|--|--|--|--|
+|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers/7.gif)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers/8.gif)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers/10.gif)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers/9.gif)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers/11.gif)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers/12.gif)|
+
+### App Launchers (rofi-git)
+
+> These themes/configs only works with `rofi-git(aur)`. You need to build latest rofi if you're not using *archlinux*.
+>
+> Tested With Rofi Version : **1.5.4-76-gca067234**
+
+***Stuff you need***
++ *Latest Rofi* : [Here...](https://github.com/davatorium/rofi)
++ *Icon pack* : [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) & [Breeze](https://github.com/KDE/breeze-icons)
++ *Fonts* : [Fantasque](https://github.com/adi1090x/rofi/blob/master/fonts) & [Noto Sans](https://github.com/googlefonts/noto-fonts)
++ *For Blur* : [Compton Tryone](https://github.com/tryone144/compton)
+
+***Styling***
++ Edit the `launcher.sh` file and change the **style** variable to set the style you like.
++ Edit the selected `.rasi` file and *uncomment* the desired color/style. 
+
+|Blurry|Launchpad|
+|--|--|
+|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/1.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/6.png)|
+
+|Slingshot Light|Slingshot Dark|
+|--|--|
+|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/7.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/8.png)|
+
+|Simple Menu Light|Simple Menu Dark|Krunner Light|Krunner Dark|
+|--|--|--|--|
+|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/2.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/3.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/4.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/5.png)|
+
+|AppDrawer Light|AppDrawer Dark|AppFolder Light|AppFolder Dark|
+|--|--|--|--|
+|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/14.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/15.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/16.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/17.png)|
+
+|Row Light|Row Dark|Column Light|Column Dark|
+|--|--|--|--|
+|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/20.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/21.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/18.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/19.png)|
+
+|RowCenter Light|RowCenter Dark|Row dock|Row Dropdown|
+|--|--|--|--|
+|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/22.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/23.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/26.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/27.png)|
+
+|Screen Light|Screen Dark|
+|--|--|
+|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/24.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/25.png)|
+
+|GnomeDo Classic|GnomeDo Light|GnomeDo Black|GnomeDo Transparent|
+|--|--|--|--|
+|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/9.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/10.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/11.png)|![gif](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/launchers_git/13.png)|
+
+### Colorschemes
+
+The files are stored in *~/.config/rofi/themes/colorschemes*.
+To change the active colorscheme simply change the import line in *~/.config/rofi/themes/colors.rasi*.
+
+If you wish to change the colorscheme for only one specific applet/menu, you can add the line below after `@import "colors.rasi"` to the *~/.config/rofi/themes/<menu-name>.rasi* or *~/.config/rofi/themes/menu/<menu-name>.rasi* file.
+
+``` css
+@import "colorschemes/<colorscheme-name>.rasi"
+```
+
+|Material Dark|Material Light|
+|--|--|
+|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/md.gif)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/ml.gif)|
+
+|Adapta-Nokto|Adapta|Arc-Dark|Arc|
+|--|--|--|--|
+|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/2.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/1.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/4.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/3.png)|
+
+|adwaita|gruvbox|dark|armchair|darkpink|
+|--|--|--|--|--|
+|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/5.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/6.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/7.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/8.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/9.png)|
+
+|fresh|inside|party|sirin|minimo|
+|--|--|--|--|--|
+|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/10.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/11.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/12.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/13.png)|![img](https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/colors/14.png)|
+
+## Tips
+
+### Simple way to execute applets/menus
+
+You can copy links from `bin` folder to your `$PATH` variable so that entering `appsmenu` in the terminal (or executing this command) will summon the appsmenu. you can do it by -
+
+``` bash
+mkdir ~/.bin
+cp -r ~/.config/rofi/bin/* ~/.bin
+# Add folder to the $PATH variable
+echo "PATH=$PATH:~/.bin" >> ~/.profile
+```
+
+**Note:** after doing this your `$PATH` variable won't be updated, so you will need to log out and then back in to be able to summon the menus this way.
+
+### Use With polybar
+
+This is a simple example on how can you use these applets with polybar by adding modules and giving full paths of selected applet like *~/.config/rofi/scripts/backlight.sh* or simply name if you followed the above method -
+
 ```bash
-# [...]
-case $chosen in
-    $screen)
-        sleep 1; i3-scrot -d
-        ;;
-    $area)
-        i3-scrot -s
-        ;;
-    $window)
-        sleep 1; i3-scrot -w
-        ;;
-esac
+[module/backlight]
+type = custom/text
+content = 
+
+content-background = ${color.bg}
+content-foreground = ${color.cyan}
+
+click-left = ~/.config/rofi/scripts/backlight.sh
+
+## Or...
+
+[module/backlight]
+type = custom/text
+content = 
+
+content-background = ${color.bg}
+content-foreground = ${color.green}
+
+click-left = backlightmenu
+
 ```
 
-## How to install and use
+Here's How it looks on polybar with different colorschemes for each applet...
 
-1. Copy the `config.rasi` file to `~/.config/rofi/` (mainly used by the **appsmenu**, but removing it seems to screw with other menus' theme)
-2. Copy the `scripts` directory to `~/.config/rofi/` (you can delete the menus you won't use)
-3. Make sure those scripts are executables with the command: `chmod +x ~/.config/rofi/scripts/*`
-4. Copy the `themes` directory to `~/.config/rofi/` (you can delete the menus you won't use)
-5. Set the resolution to use in `~/.config/rofi/themes/shared/settings.rasi`. If the resolution you want to use is not in the `~/.config/rofi/themes/shared/resolutions` directory, you can copy one of the existing ones and adjust a few variables to make it fit your resolution. The main variables to play around with are `*-window-padding`, `*-listview-spacing` and `*-element-padding`. Do not hesitate to open a pull request to share your custom resolution variables file on this repo for others to use.
+<p align="left">
+  <img src=https://raw.githubusercontent.com/adi1090x/files/master/rofi/images/bar.gif>
+</p>
 
-### Optionnal
+### Use With i3
 
-> To make it easier to call those menus, you can use the `/usr/local/bin` directory.
+You can call the scripts by giving their fulls paths like *~/.config/rofi/scripts/<script-name>.sh* or follow method above to call the menus in one word. Then add these lines to your i3 config file:
 
-1. Create the directory (if it doesn't exist): `sudo mkdir -p /usr/local/bin`
-2. Copy the content of the `bins` directory to `/usr/local/bin/`
-3. Make yourself (or the user group) the owner of these files so that you can call them without needing root: `sudo chown <username> /usr/local/bin/*menu`
-4. Make sure those scripts are executables with the command: `sudo chmod +x /usr/local/bin/*`
-5. Test in a new terminal or with an i3 keybinding to call these menus with a simple `<menuname>` command
-
-**Note:** I keep those files in `/usr/local/bin/`, but they are not the actual scripts that you will be running, they will simply call the scripts located in `~/.config/rofi/scripts/`, it is a personnal preference. You could copy the content of `scripts` in `/usr/local/bin/` and it would work like a charm too (although you might want to remove the `.sh` at the end of these in this case). This would be useful if multiple users are supposed to be able to call these menus.
-
----
-
-> **Required** to use the networkmenu.
-
-1. Copy the `networkmanager-dmenu` directory in `~/.config/`
-
-### Use in i3
-
-Here is a sample of my i3 config where I defined keybindings to use these menus:
-```
+```bash
 set $mod Mod4
 set $Alt Mod1
-bindsym $mod+d                  exec --no-startup-id appsmenu
-bindsym $mod+l                  exec --no-startup-id i3layoutmenu
-bindsym $mod+m                  exec --no-startup-id mpdmenu
-bindsym $mod+n                  exec --no-startup-id networkmenu
-bindsym $Alt+v                  exec --no-startup-id nmvpnmenu
-bindsym $mod+0                  exec --no-startup-id powermenu
-bindsym $mod+s                  exec --no-startup-id scrotmenu
+bindsym $mod+m exec --no-startup-id mpdmenu
+bindsym $mod+n exec --no-startup-id networkmenu
+bindsym $mod+p exec --no-startup-id ~/.config/rofi/scripts/powermenu.sh
+#etc
 ```
 
-**Note:** You would need to do [this](https://gitlab.com/vahnrr/rofi-menus#optionnal) to be able to call the menus this way, otherwise just execute the menus' script.
+### Use With Openbox
 
-## TODO
+Same thing can be done with openbox by adding these lines to rc.xml file:
 
-- Find a cleaner way to wait for the first `nmcli` command to be successful in `nmvpnmenu.sh` (line **46**) as without the `sleep 1` it will throw an error, but waiting 1 second is not a safe work around
+```xml
+    <keybind key="W-m">
+      <action name="Execute">
+        <command>~/.config/rofi/scripts/mpd.sh</command>
+      </action>
+    </keybind>
+    <!-- Or -->
+    <keybind key="W-m">
+      <action name="Execute">
+        <command>mpdmenu</command>
+      </action>
+    </keybind>
+    <!-- etc -->
+```
 
+### Support This Project
+<p align="left">
+<a href="https://www.paypal.me/adi1090x" target="_blank"><img alt="undefined" src="https://img.shields.io/badge/paypal-adi1090x-blue?style=for-the-badge&logo=paypal"></a>
+<a href="https://www.buymeacoffee.com/adi1090x" target="_blank"><img alt="undefined" src="https://img.shields.io/badge/BuyMeAcoffee-adi1090x-orange?style=for-the-badge&logo=buy-me-a-coffee"></a>  
+<a href="https://ko-fi.com/adi1090x" target="_blank"><img alt="undefined" src="https://img.shields.io/badge/KoFi-adi1090x-red?style=for-the-badge&logo=ko-fi"></a>  
+</p>
+
+### Bottom Line
++ PR's, Issues, Contributions are welcome.
++ No PR's for color-schemes, they always endup looking similar.
++ Have Fun!
