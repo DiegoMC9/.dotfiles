@@ -30,8 +30,8 @@
 /* ########### */
 
 #window {
-  width: 18%;
-  height: 20%;
+  width: 14em;
+  height: 8em;
 }
 
 /* ########### */

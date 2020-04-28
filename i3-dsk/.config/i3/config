@@ -134,7 +134,7 @@ bindsym $mod+Shift+BackSpace floating enable, move position center, move scratch
 bindsym $mod+Ctrl+BackSpace exec $term -e tmux new-session -A -s scratch 
 
 # resize window (you can also use the mouse for that)
-mode "Resize" {
+mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
