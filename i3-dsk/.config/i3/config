@@ -236,6 +236,7 @@ bindsym $mod+ctrl+e exec emacsclient -c
 
 # Autostart apps
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always polybar-msg cmd hide &
 exec --no-startup-id emacs --daemon
 exec --no-startup-id dunst
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
