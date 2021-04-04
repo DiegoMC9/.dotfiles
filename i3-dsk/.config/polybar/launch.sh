@@ -10,7 +10,7 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch Polybar
 for i in $(polybar -m | awk -F: '{print $1}'); do
-    MONITOR=$i polybar -c ~/.config/polybar/config.ini -rq top &
-    MONITOR=$i polybar -c ~/.config/polybar/config.ini -rq bottom &
+    MONITOR="$i" polybar -c ~/.config/polybar/config.ini -rq top &
+    #MONITOR="$i" polybar -c ~/.config/polybar/config.ini -rq bottom &
 done
-sleep 0.5 && polybar-msg cmd hide
+#polybar-msg cmd hide

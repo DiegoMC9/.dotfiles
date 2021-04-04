@@ -1,122 +1,123 @@
-* {
-  accent:           #4DB6AC;
-  background:       #263238;
-  background-light: #2F3D45;
-  foreground:       #93a1a1;
-  on:               #5BB462;
-  off:              #DE635E;
+/*
+ *
+ * Author  : Aditya Shakya
+ * Mail    : adi1090x@gmail.com
+ * Github  : @adi1090x
+ * Twitter : @adi1090x
+ *
+ */
+
+configuration {
+	font:							"FantasqueSansMono Nerd Font 14";
+    show-icons:                     false;
+	icon-theme: 					"Papirus";
+    drun-display-format:            "{name}";
+    disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
+	sidebar-mode: 					false;
 }
 
+@import "colorschemes/arc.rasi"
 
-/* ########### */
-
-* {
-  /* General */
-  text-font:                            "Comfortaa 12";
-  icon-font:                            "Hurmit Nerd Font Mono 32";
-  icon-font-small:                      "Hurmit Nerd Font Mono 24";
-
-  option-6-listview-spacing:            10px;
-
-  menu-window-padding:                   0px 15px;
-  menu-inputbar-margin:                  10px 0px;
-  menu-prompt-padding:                   10px 20px 10px 20px;
-  menu-prompt-margin:                    0px 0px 0px -2px;
-  menu-element-border:                   10px;
-  menu-element-padding:                  3px 8px -1px -40px;
+window {
+    transparency:                   "real";
+    background-color:               @background;
+    text-color:                     @foreground;
+    
+    height:                         23%;
+    width:                          70%;
+    location:                       south;
+    x-offset:                       0;
+    y-offset:                       0;
 }
 
-/* ########### */
-
-#window {
-  width: 22em;
-  height: 8em;
+prompt {
+    enabled: 						true;
+    padding:                        1% 1% 1% 1%;
+	background-color: 				@background-alt;
+	text-color: 				    @foreground;
 }
 
-/* ########### */
-
-* {
-  background-color: @background;
-  text-color: @foreground;
-  font: @icon-font;
-}
-
-#horibox {
-  children: [ listview ];
-}
-#listview {
-  layout: horizontal;
-}
-#element {
-  padding: @option-element-padding;
-  background-color: @background-light;
-}
-#element.selected {
-  background-color: @accent;
-  text-color: @background;
-}
-
-/* ########### */
-
-* {
-  font: @text-font;
-}
-#window {
-  padding: @menu-window-padding;
-  children: [ inputbar, horibox ];
-}
-#inputbar {
-  children: [ textbox-prompt-colon, prompt ];
-  margin: @menu-inputbar-margin;
-}
-prompt,
 textbox-prompt-colon {
-  padding: @menu-prompt-padding;
-  border: 2px;
-  border-color: @accent;
+	expand: 						false;
+	str: 							"System |";
+	background-color: 				@background-alt;
+	text-color: 				    @foreground;
+  padding:                          1% 0.5% 1% 0.5%;
 }
-#prompt {
-  margin: @menu-prompt-margin;
-  background-color: @background-light;
-  text-color: @accent;
+
+inputbar {
+	children: 						[ textbox-prompt-colon, prompt ];
+    background-color:               @background-alt;
+    text-color:                     @foreground;
+    expand:                         false;
+    border:                  		0.2% 0% 0.2% 0%;
+    border-radius:                  16px;
+    border-color:                  	@border;
+    margin:                         0% 59.3% 0% 0%;
+    padding:                        0.5%;
+    position:                       center;
 }
-#textbox-prompt-colon {
-  expand: true;
-  str: "System";
-  background-color: @accent;
-  text-color: @background;
+
+listview {
+    background-color:               @background;
+    margin:                         0% 0% 0% 0%;
+    spacing:                        2%;
+    cycle:                          true;
+    dynamic:                        true;
+    layout:                         horizontal;
 }
-#horibox {
-  padding: 0px;
+
+mainbox {
+    background-color:               @background;
+    children:                       [ listview ];
+    spacing:                        2%;
+    padding:                        3% 0% 0% 3%;
 }
-#listview {
-  spacing: @option-6-listview-spacing;
-  lines: 5;
+
+element {
+    background-color:               @background-alt;
+    text-color:                     @foreground;
+    orientation:                    horizontal;
+    border-radius:                  35px;
 }
-#element {
-  font: @icon-font;
-  border: @menu-element-border;
-  padding: @menu-element-padding;
-  border-color: @background-light;
+
+element-text {
+	font:							"feather 100";
+    expand:                         true;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    margin:                         4% 4% 14% 4%;
 }
-#element.selected {
-  border-color: @accent;
+
+element normal.urgent,
+element alternate.urgent {
+    background-color:               @urgent;
+    text-color:                     @foreground;
+    border-radius:                  0.2%;
 }
-element.active,
-element.selected.urgent {
-  background-color: @on;
-  text-color: @background;
-  border-color: @on;
+
+element normal.active,
+element alternate.active {
+    background-color:               @background-alt;
+    text-color:                     @foreground;
 }
-element.selected.urgent {
-  border-color: @accent;
+
+element selected {
+    background-color:               @selected;
+    text-color:                     @foreground;
+    border:                  		0.2% 0% 0.2% 0%;
+    border-radius:                  35px;
+    border-color:                  	@border;
 }
-element.urgent,
-element.selected.active {
-  background-color: @off;
-  text-color: @background;
-  border-color: @off;
+
+element selected.urgent {
+    background-color:               @urgent;
+    text-color:                     @foreground;
 }
-element.selected.active {
-  border-color: @accent;
+
+element selected.active {
+    background-color:               @background-alt;
+    color:                          @foreground;
 }

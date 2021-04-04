@@ -9,11 +9,11 @@ rofi_command="rofi -theme themes/powermenu.rasi"
 uptime=$(uptime -p | sed -e 's/up //g')
 
 # Options
-shutdown="襤"
+shutdown="⏻"
 reboot="ﰇ"
 lock=""
-suspend="鈴"
-logout=""
+suspend="⏾"
+logout="⍇"
 
 # Variable passed to rofi
 options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
@@ -31,7 +31,7 @@ case $chosen in
         ;;
     $suspend)
         mpc -q pause
-        amixer set Master mute
+        mocp --pause
         systemctl suspend
         ;;
     $logout)

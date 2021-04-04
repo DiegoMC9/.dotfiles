@@ -56,7 +56,8 @@ else
 fi
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
-
+export VITASDK=/usr/local/vitasdk # define $VITASDK if you haven't already
+export PATH=$VITASDK/bin:$PATH # add vitasdk tool to $PATH if you haven't already
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
